@@ -31,7 +31,16 @@ export const getGeminiResponse = async (prompt: string) => {
     }
 
     if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-      return data.candidates[0].content.parts[0].text;
+      // Get the raw text response
+      let responseText = data.candidates[0].content.parts[0].text;
+      
+      // Fix markdown formatting issues - replace ** with actual bold styling
+      // This cleans up the asterisks in the response
+      responseText = responseText
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/\*(.*?)\*/g, '$1');
+        
+      return responseText;
     } else {
       console.error("Unexpected API response format:", data);
       return "Sorry, I couldn't generate a response. Please try asking differently.";
