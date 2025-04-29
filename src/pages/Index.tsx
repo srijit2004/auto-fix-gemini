@@ -8,17 +8,17 @@ const Index = () => {
       <div className="max-w-4xl mx-auto">
         <header className="mb-12 text-center">
           <h1 className="text-3xl font-bold text-blue-800 mb-2">
-            Auto Repair Advisor
+            AI Chatbot
           </h1>
           <p className="text-gray-600">
-            Diagnose car issues and get repair recommendations using AI
+            Ask any question and get answers using AI
           </p>
         </header>
         
         <AutoRepairAdvisor />
         
         <footer className="mt-16 text-center text-gray-500 text-sm">
-          <p>© 2025 Auto Repair Advisor - College Project</p>
+          <p>© 2025 AI Chatbot - College Project</p>
         </footer>
       </div>
     </div>

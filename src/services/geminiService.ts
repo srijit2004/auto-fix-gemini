@@ -3,7 +3,7 @@
 const GEMINI_API_KEY = "AIzaSyDZ14mCII2eUwtVLQcUnNXosKlmnf8Illg";
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
-export const getGeminiResponse = async (question: string) => {
+export const getGeminiResponse = async (prompt: string) => {
   try {
     const response = await fetch(`${API_URL}?key=${GEMINI_API_KEY}`, {
       method: "POST",
@@ -15,7 +15,7 @@ export const getGeminiResponse = async (question: string) => {
           {
             parts: [
               {
-                text: `You are an Auto Repair Advisor. The user will ask about car problems, and you should diagnose the issue and suggest possible fixes. The question is: ${question}`,
+                text: prompt,
               },
             ],
           },
@@ -27,7 +27,7 @@ export const getGeminiResponse = async (question: string) => {
     
     if (data.error) {
       console.error("Gemini API error:", data.error);
-      return "Sorry, I encountered an error while processing your request. Please try again.";
+      return "Sorry, I encountered an error while processing your request. Please try again later.";
     }
 
     if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
